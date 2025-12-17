@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Voice to Text</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
+    color: #fff;
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+  }
+
+  .container:hover {
+    transform: scale(1.02);
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 0.95em;
+    margin-bottom: 30px;
+    color: #fce38a;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+
+  #recordDot {
+    color: red;
+    font-size: 1.4em;
+    margin-right: 10px;
+    animation: pulse 1s infinite;
+    opacity: 0.6;
+  }
+
+  #statusText {
+    font-weight: 600;
+    font-size: 1em;
+    color: #fff;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  textarea {
+    width: 100%;
+    height: 160px;
+    border-radius: 15px;
+    border: none;
+    padding: 15px;
+    font-size: 1em;
+    resize: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    margin-bottom: 25px;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  button {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 12px;
+    border: none;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fff;
+  }
+
+  #startBtn {
+    background: linear-gradient(45deg, #ff512f, #dd2476);
+  }
+
+  #startBtn:hover {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    transform: scale(1.05);
+  }
+
+  #stopBtn {
+    background: linear-gradient(45deg, #11998e, #38ef7d);
+  }
+
+  #stopBtn:hover {
+    background: linear-gradient(45deg, #43cea2, #185a9d);
+    transform: scale(1.05);
+  }
+
+  button:disabled {
+    background: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+  }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎙️ Voice to Text</h1>
+    <p class="subtitle">Click Start → Speak → Stop</p>
+
+    <div class="status">
+      <span id="recordDot">●</span>
+      <span id="statusText">Idle</span>
+    </div>
+
+    <textarea id="output" placeholder="Your speech will appear here..."></textarea>
+
+    <div class="buttons">
+      <button id="startBtn">Start Recording</button>
+      <button id="stopBtn" disabled>Stop Recording</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
